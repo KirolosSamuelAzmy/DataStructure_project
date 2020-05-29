@@ -69,7 +69,7 @@ def ID3(data,originaldata,features,target_attribute_name="rating",parent_node_cl
             
         return(tree)    
                 
-def predict(query,tree,default = 1):
+def predict(query,tree):
 
     for key in list(query.keys()):
         if key in list(tree.keys()):
@@ -77,7 +77,7 @@ def predict(query,tree,default = 1):
             try:
                 result = tree[key][query[key]] 
             except:
-                return "Positive" if default == 1 else "Negative"
+                return "Positive" 
   
             #3.
             result = tree[key][query[key]]
@@ -102,9 +102,7 @@ def test(data,tree):
         pred.loc[i,"predicted"] = predict(queries[i],tree,1.0) 
 
     
-    pred.predicted.replace(1,"Positive",inplace=True)
-    pred.predicted.replace(0,"Negative",inplace=True)
-
+    
     print('The prediction accuracy is: ',(np.sum(pred["predicted"] == data["rating"])/len(data))*100,'%')
     acc = (np.sum(pred["predicted"] == data["rating"])/len(data))*100
     return pred,acc
