@@ -9,7 +9,7 @@ def predict(query,tree,default = 1):
             try:
                 result = tree[key][query[key]] 
             except:
-                return "Positive" if default == 1 else "Negative"
+                return default
   
             #3.
             result = tree[key][query[key]]
@@ -56,10 +56,13 @@ def get_args():
     return query_1  
 
 def evaluate(query,tree):
-	default = 1
+	default = 1.0
 	result = predict(query,tree,default)
 	file = open('verdict','w')
-	file.write(result)
+	if result == default:
+		file.write("Positive")
+	else:
+		file.write(result)
 	file.close()
 
 query = get_args()
