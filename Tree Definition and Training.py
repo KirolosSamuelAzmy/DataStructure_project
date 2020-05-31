@@ -99,7 +99,7 @@ def test(data,tree):
     
     #Calculate the prediction accuracy
     for i in range(len(data)):
-        pred.loc[i,"predicted"] = predict(queries[i],tree,1.0) 
+        pred.loc[i,"predicted"] = predict(queries[i],tree) 
 
     
     
