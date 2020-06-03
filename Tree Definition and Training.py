@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import csv 
 import pickle
-
 def entropy(target_col): 
     
     elements,counts = np.unique(target_col,return_counts = True)
